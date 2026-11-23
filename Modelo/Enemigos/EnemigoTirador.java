@@ -8,30 +8,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EnemigoTirador extends Enemigo {
-    private int frecuencia;
-    private int contador;
+    private int frecuenciaDisparo;
+    private int tiempoDesdeUltimoDisparo;
 
     public EnemigoTirador(double x, double y, int frecuencia) {
         super(x, y, 30, 30, 20, 1);
-        this.frecuencia = frecuencia;
-        this.contador = 0;
+        this.frecuenciaDisparo = frecuencia;
+        this.tiempoDesdeUltimoDisparo = 0;
     }
 
     @Override
     public void actualizar() {
         super.actualizar();
-        if (isActiva()) {
-            contador++;
-        }
+        if (isActiva()) tiempoDesdeUltimoDisparo++;
     }
 
     @Override
     public List<Proyectil> disparar() {
         List<Proyectil> disparos = new ArrayList<>();
-        if (isActiva() && contador % frecuencia == 0) {
+        if (isActiva() && tiempoDesdeUltimoDisparo >= frecuenciaDisparo) {
             double xCentro = getX() + (getAncho() / 2.0) - 3;
             double ySalida = getY() + getAlto();
-            disparos.add(new ProyectilEnemigo(xCentro, ySalida, 4, 1));
+            disparos.add(new ProyectilEnemigo(xCentro, ySalida, 4, 1)); 
+            tiempoDesdeUltimoDisparo = 0;
         }
         return disparos;
     }
