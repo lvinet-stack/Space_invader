@@ -13,10 +13,10 @@ import Modelo.EntidadJuego;
 import Modelo.PowerUp;
 import Modelo.Proyectil;
 import Modelo.ProyectilEnemigo;
-import Modelo.Enemigos.Enemigo;
-import Modelo.Enemigos.EnemigoBasico;
-import Modelo.Enemigos.EnemigoKamikaze;
-import Modelo.Enemigos.EnemigoTirador;
+import Modelo.Enemigo;
+import Modelo.EnemigoBasico;
+import Modelo.EnemigoKamikaze;
+import Modelo.EnemigoTirador;
 import java.awt.Color;
 
 public class GestorNiveles {
