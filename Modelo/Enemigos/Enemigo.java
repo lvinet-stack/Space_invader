@@ -1,42 +1,25 @@
 package Modelo.Enemigos;
 
-import Contratos.Disparador;
-import Contratos.EstrategiaMovimiento;
-import Contratos.Puntuable;
-import Modelo.EntidadJuego;
+import Modelo.Proyectil;
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
-public abstract class Enemigo extends EntidadJuego implements Disparador, Puntuable {
-    private int puntos;
-    private int resistencia;
-    private EstrategiaMovimiento estrategiaMovimiento;
+public class EnemigoBasico extends Enemigo {
+    private double velocidadMovimiento;
 
-    public Enemigo(double x, double y, int ancho, int alto, int puntos, int resistencia) {
-        super(x, y, ancho, alto);
-        this.puntos = puntos;
-        this.resistencia = resistencia;
-    }
-
-    public void recibirDanio(int danio) {
-        this.resistencia -= danio;
-        if (this.resistencia <= 0) destruir();
-    }
-
-    public void setEstrategiaMovimiento(EstrategiaMovimiento estrategia) {
-        this.estrategiaMovimiento = estrategia;
+    public EnemigoBasico(double x, double y) {
+        super(x, y, 30, 30, 10, 1);
+        this.velocidadMovimiento = 1.0;
     }
 
     @Override
-    public int getPuntos() { return puntos; }
-    public int getResistencia() { return resistencia; }
+    public List<Proyectil> disparar() { return new ArrayList<>(); }
 
     @Override
-    public void actualizar() {
-        if (estrategiaMovimiento != null && isActiva()) {
-            estrategiaMovimiento.mover(this);
-        }
+    public void dibujar(Graphics2D g) {
+        g.setColor(Color.BLUE);
+        g.fillRect((int) getX(), (int) getY(), getAncho(), getAlto());
     }
-    
-    @Override
-    public void alColisionar(Contratos.Colisionable otro) { }
 }
