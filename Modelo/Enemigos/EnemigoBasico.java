@@ -19,7 +19,15 @@ public class EnemigoBasico extends Enemigo {
 
     @Override
     public void dibujar(Graphics2D g) {
-        g.setColor(Color.GREEN);
-        g.fillRect((int) getX(), (int) getY(), getAncho(), getAlto());
+        String[] enemigo = {
+            "  ##  ",
+            " #### ",
+            "######",
+            "##  ##",
+            "######",
+            "# ## #"
+        };
+
+        dibujarSprite(g, enemigo, (int) getX(), (int) getY(), 5, Color.GREEN);
     }
 }
