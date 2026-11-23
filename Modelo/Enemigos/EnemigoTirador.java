@@ -37,7 +37,15 @@ public class EnemigoTirador extends Enemigo {
 
     @Override
     public void dibujar(Graphics2D g) {
-        g.setColor(Color.ORANGE);
-        g.fillRect((int) getX(), (int) getY(), getAncho(), getAlto());
+        String[] enemigo = {
+            "### ###",
+            "#######",
+            " ## ##",
+            "### ###",
+            " ##### ",
+            "  ###   "
+        };
+
+        dibujarSprite(g, enemigo, (int) getX(), (int) getY(), 5, Color.ORANGE);
     }
 }
