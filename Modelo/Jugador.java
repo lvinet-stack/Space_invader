@@ -77,9 +77,31 @@ public class Jugador extends EntidadJuego implements Disparador {
 
     @Override
     public void dibujar(Graphics2D g) {
+        String[] nave = {
+            "    ##    ",
+            "   ####   ",
+            "  ######  ",
+            " ######## ",
+            "####  ####",
+            "###    ###"
+        };
+
         g.setColor(escudoActivo ? Color.CYAN : Color.GREEN);
-        g.fillPolygon(new int[]{(int) getX(), (int) getX() + getAncho(), (int) getX() + (getAncho() / 2)},
-                new int[]{(int) getY() + getAlto(), (int) getY() + getAlto(), (int) getY()}, 3);
+
+        int celda = 4;
+
+        for (int fila = 0; fila < nave.length; fila++) {
+            for (int columna = 0; columna < nave[fila].length(); columna++) {
+                if (nave[fila].charAt(columna) == '#') {
+                    g.fillRect(
+                        (int) getX() + columna * celda,
+                        (int) getY() + fila * celda,
+                        celda,
+                        celda
+                    );
+                }
+            }
+        }
     }
 
     @Override
@@ -88,7 +110,7 @@ public class Jugador extends EntidadJuego implements Disparador {
     public int getVidas() { return vidas; }
     public void setEscudoActivo(boolean activo) { 
         this.escudoActivo = activo; 
-        this.tiempoEscudo = 400; // ~6.6 segundos
+        this.tiempoEscudo = 400; //6.6 segundos
     }
     public void setDisparoDoble(boolean doble) { 
         this.disparoDoble = doble; 
