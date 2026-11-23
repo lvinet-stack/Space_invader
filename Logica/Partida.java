@@ -1,4 +1,3 @@
-
 package Logica;
 
 
@@ -17,8 +16,8 @@ import Modelo.EfectosPowerUp;
 import Modelo.Proyectil;
 import Modelo.ProyectilEnemigo;
 import Modelo.ProyectilJugador;
-import Modelo.Enemigo;
-import Modelo.EnemigoKamikaze;
+import Modelo.Enemigos.Enemigo;
+import Modelo.Enemigos.EnemigoKamikaze;
 
 
 public class Partida {
@@ -116,7 +115,7 @@ public class Partida {
         if (pU.isActiva() && chocan(pU, jugador)) {
             notificar(pU, jugador);
             pU.aplicarEfecto(jugador);
-        }
+        }   
     }
 }
 
@@ -228,7 +227,7 @@ public class Partida {
         entidades.removeIf(filtro);
     }
 
-public Jugador getJugador() {
+    public Jugador getJugador() {
         return jugador;
     }
 
@@ -239,7 +238,10 @@ public Jugador getJugador() {
     public int getNivel() {
         return nivel;
     }
-
+    
+    public GestorNiveles getGestorNiveles() {
+        return gestorNiveles;
+    }
     public boolean isTerminada() {
         return terminada;
     }
@@ -260,3 +262,4 @@ public Jugador getJugador() {
         return alto;
     }
 }
+
