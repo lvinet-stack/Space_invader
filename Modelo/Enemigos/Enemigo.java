@@ -19,9 +19,7 @@ public abstract class Enemigo extends EntidadJuego implements Disparador, Puntua
 
     public void recibirDanio(int danio) {
         this.resistencia -= danio;
-        if (this.resistencia <= 0) {
-            destruir();
-        }
+        if (this.resistencia <= 0) destruir();
     }
 
     public void setEstrategiaMovimiento(EstrategiaMovimiento estrategia) {
@@ -29,13 +27,8 @@ public abstract class Enemigo extends EntidadJuego implements Disparador, Puntua
     }
 
     @Override
-    public int getPuntos() {
-        return puntos;
-    }
-
-    public int getResistencia() {
-        return resistencia;
-    }
+    public int getPuntos() { return puntos; }
+    public int getResistencia() { return resistencia; }
 
     @Override
     public void actualizar() {
@@ -43,8 +36,7 @@ public abstract class Enemigo extends EntidadJuego implements Disparador, Puntua
             estrategiaMovimiento.mover(this);
         }
     }
-
+    
     @Override
-    public void alColisionar(Contratos.Colisionable otro) {
-    }
+    public void alColisionar(Contratos.Colisionable otro) { }
 }
