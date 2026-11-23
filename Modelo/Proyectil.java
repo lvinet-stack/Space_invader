@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 public abstract class Proyectil extends EntidadJuego {
     protected int velocidad;
     protected int danio;
-    protected int direccion; 
+    protected int direccion;
 
     public Proyectil(double x, double y, int ancho, int alto, int velocidad, int danio, int direccion) {
         super(x, y, ancho, alto);
@@ -26,7 +26,5 @@ public abstract class Proyectil extends EntidadJuego {
     @Override
     public abstract void alColisionar(Colisionable otro);
 
-    public int getDanio() {
-        return danio;
-    }
+    public int getDanio() { return danio; }
 }
