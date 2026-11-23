@@ -115,7 +115,7 @@ public class Partida {
     for (PowerUp pU : de(PowerUp.class)) {
         if (pU.isActiva() && chocan(pU, jugador)) {
             notificar(pU, jugador);
-            pU.aplicar(jugador);
+            pU.aplicarEfecto(jugador);
         }
     }
 }
