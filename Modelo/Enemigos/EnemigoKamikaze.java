@@ -30,8 +30,16 @@ public class EnemigoKamikaze extends Enemigo {
 
     @Override
     public void dibujar(Graphics2D g) {
-        g.setColor(Color.RED);
-        g.fillPolygon(new int[]{(int) getX(), (int) getX() + getAncho(), (int) getX() + (getAncho() / 2)},
-                new int[]{(int) getY(), (int) getY(), (int) getY() + getAlto()}, 3);
+        String[] enemigo = {
+            "#######",
+            " ## ## ",
+            " ## ##",
+            " ## ## ",
+            " ##### ",
+            "  ###   "
+        };
+
+        dibujarSprite(g, enemigo, (int) getX(), (int) getY(), 5, Color.RED);
+       
     }
 }
