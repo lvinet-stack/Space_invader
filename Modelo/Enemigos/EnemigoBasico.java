@@ -1,13 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo.Enemigos;
 
-/**
- *
- * @author luis7
- */
-public class EnemigoBasico {
-    
+import Modelo.Proyectil;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
+
+public class EnemigoBasico extends Enemigo {
+
+    public EnemigoBasico(double x, double y) {
+        super(x, y, 30, 30, 10, 1); 
+    }
+
+    @Override
+    public List<Proyectil> disparar() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public void dibujar(Graphics2D g) {
+        g.setColor(Color.GREEN);
+        g.fillRect((int) getX(), (int) getY(), getAncho(), getAlto());
+    }
 }
