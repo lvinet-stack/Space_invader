@@ -3,9 +3,6 @@ package Modelo;
 import Contratos.Colisionable;
 import java.awt.Graphics2D;
 
-/**
- * Clase base abstracta para los proyectiles del juego.
- */
 public abstract class Proyectil extends EntidadJuego {
     protected int velocidad;
     protected int danio;
