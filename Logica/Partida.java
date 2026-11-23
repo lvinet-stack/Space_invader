@@ -17,8 +17,8 @@ import Modelo.EfectosPowerUp;
 import Modelo.Proyectil;
 import Modelo.ProyectilEnemigo;
 import Modelo.ProyectilJugador;
-import Modelo.Enemigos.Enemigo;
-import Modelo.Enemigos.EnemigoKamikaze;
+import Modelo.Enemigo;
+import Modelo.EnemigoKamikaze;
 
 
 public class Partida {
