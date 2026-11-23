@@ -1,6 +1,5 @@
 package Modelo;
 
-import Contratos.Colisionable;
 import Contratos.Disparador;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -10,12 +9,11 @@ import java.util.List;
 public class Jugador extends EntidadJuego implements Disparador {
     private int vidas;
     private double velocidad;
-    private int tiempoRecarga;
-    private int recargaActual;
+    private int recarga;
+    private int tiempoDesdeUltimoDisparo;
     
     private boolean escudoActivo;
     private int tiempoEscudo;
-    
     private boolean disparoDoble;
     private int tiempoDisparoDoble;
 
@@ -23,24 +21,19 @@ public class Jugador extends EntidadJuego implements Disparador {
         super(x, y, 40, 30);
         this.vidas = 3;
         this.velocidad = 6.0;
-        this.tiempoRecarga = 15;
-        this.recargaActual = 0;
+        this.recarga = 15;
+        this.tiempoDesdeUltimoDisparo = 0;
         this.escudoActivo = false;
         this.disparoDoble = false;
     }
 
-    public void moverIzquierda() {
-        setX(getX() - velocidad);
-    }
-
-    public void moverDerecha() {
-        setX(getX() + velocidad);
-    }
+    public void moverIzquierda() { setX(getX() - velocidad); }
+    public void moverDerecha() { setX(getX() + velocidad); }
 
     @Override
     public List<Proyectil> disparar() {
         List<Proyectil> disparos = new ArrayList<>();
-        if (recargaActual <= 0) {
+        if (tiempoDesdeUltimoDisparo >= recarga) {
             double xCentro = getX() + (getAncho() / 2.0) - 3;
             double ySalida = getY();
             
@@ -49,7 +42,7 @@ public class Jugador extends EntidadJuego implements Disparador {
                 disparos.add(new ProyectilJugador(getX() + 5, ySalida));
                 disparos.add(new ProyectilJugador(getX() + getAncho() - 11, ySalida));
             }
-            recargaActual = tiempoRecarga;
+            tiempoDesdeUltimoDisparo = 0;
         }
         return disparos;
     }
@@ -57,7 +50,7 @@ public class Jugador extends EntidadJuego implements Disparador {
     public void perderVida() {
         if (vidas > 0) {
             if (escudoActivo) {
-                escudoActivo = false; 
+                escudoActivo = false;
             } else {
                 vidas--;
             }
@@ -65,20 +58,17 @@ public class Jugador extends EntidadJuego implements Disparador {
     }
 
     public void ganarVida() {
-        if (vidas < 5) {
-            vidas++;
-        }
+        if (vidas < 5) vidas++;
     }
 
     @Override
     public void actualizar() {
-        if (recargaActual > 0) recargaActual--;
+        if (tiempoDesdeUltimoDisparo < recarga) tiempoDesdeUltimoDisparo++;
         
         if (escudoActivo) {
             tiempoEscudo--;
             if (tiempoEscudo <= 0) escudoActivo = false;
         }
-        
         if (disparoDoble) {
             tiempoDisparoDoble--;
             if (tiempoDisparoDoble <= 0) disparoDoble = false;
@@ -87,23 +77,21 @@ public class Jugador extends EntidadJuego implements Disparador {
 
     @Override
     public void dibujar(Graphics2D g) {
-        g.setColor(escudoActivo ? Color.CYAN : Color.WHITE);
+        g.setColor(escudoActivo ? Color.CYAN : Color.GREEN);
         g.fillPolygon(new int[]{(int) getX(), (int) getX() + getAncho(), (int) getX() + (getAncho() / 2)},
                 new int[]{(int) getY() + getAlto(), (int) getY() + getAlto(), (int) getY()}, 3);
     }
 
     @Override
-    public void alColisionar(Colisionable otro) {
-    }
+    public void alColisionar(Contratos.Colisionable otro) { }
 
     public int getVidas() { return vidas; }
-    public boolean isEscudoActivo() { return escudoActivo; }
-    public void setEscudoActivo(boolean escudo) { 
-        this.escudoActivo = escudo; 
-        this.tiempoEscudo = 500;
+    public void setEscudoActivo(boolean activo) { 
+        this.escudoActivo = activo; 
+        this.tiempoEscudo = 400; // ~6.6 segundos
     }
     public void setDisparoDoble(boolean doble) { 
         this.disparoDoble = doble; 
-        this.tiempoDisparoDoble = 500; 
+        this.tiempoDisparoDoble = 400; 
     }
 }
