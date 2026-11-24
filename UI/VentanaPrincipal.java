@@ -20,6 +20,7 @@ public class VentanaPrincipal extends JFrame {
     private final PanelGameOver panelGameOver;
     private PanelJuego panelJuego;
     private Partida partida;
+    private int puntajeMaximo;
 
     public VentanaPrincipal() {
         super("Space Invaders");
@@ -41,7 +42,9 @@ public class VentanaPrincipal extends JFrame {
     }
 
     public void mostrarMenu() {
+        registrarPuntaje();
         detenerJuego();
+        panelMenu.actualizarPuntajeMaximo(puntajeMaximo);
         cardLayout.show(contenedor, MENU);
     }
 
@@ -51,6 +54,7 @@ public class VentanaPrincipal extends JFrame {
     }
 
     public void mostrarGameOver() {
+        registrarPuntaje();
         panelGameOver.mostrarResultado(partida.isVictoria(), partida.getPuntaje());
         cardLayout.show(contenedor, GAME_OVER);
     }
@@ -67,6 +71,12 @@ public class VentanaPrincipal extends JFrame {
         iniciarPartida();
     }
 
+    private void registrarPuntaje() {
+        if (partida != null) {
+            puntajeMaximo = Math.max(puntajeMaximo, partida.getPuntaje());
+        }
+    }
+    
     private void detenerJuego() {
         if (panelJuego != null) {
             panelJuego.detener();
