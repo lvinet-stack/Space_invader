@@ -64,3 +64,4 @@ public abstract class EntidadJuego implements Colisionable{
         return alto;
     }
 }
+
