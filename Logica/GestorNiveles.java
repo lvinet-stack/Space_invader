@@ -1,4 +1,5 @@
 
+
 package Logica;
 
 import java.awt.Graphics2D;
@@ -13,10 +14,10 @@ import Modelo.EntidadJuego;
 import Modelo.PowerUp;
 import Modelo.Proyectil;
 import Modelo.ProyectilEnemigo;
-import Modelo.Enemigo;
-import Modelo.EnemigoBasico;
-import Modelo.EnemigoKamikaze;
-import Modelo.EnemigoTirador;
+import Modelo.Enemigos.Enemigo;
+import Modelo.Enemigos.EnemigoBasico;
+import Modelo.Enemigos.EnemigoKamikaze;
+import Modelo.Enemigos.EnemigoTirador;
 import java.awt.Color;
 
 public class GestorNiveles {
@@ -72,7 +73,13 @@ public class GestorNiveles {
         int frecuencia = 150 - 30 * nivel;
         Supplier<Enemigo> basico = () -> new EnemigoBasico(0, 0);
         Supplier<Enemigo> tirador = () -> new EnemigoTirador(0, 0, frecuencia);
-        Supplier<Enemigo> kamikaze = () -> new EnemigoKamikaze(0, 0);
+        Supplier<Enemigo> kamikaze = () -> {
+        EnemigoKamikaze k = new EnemigoKamikaze(0, 0);
+            k.setEstrategiaMovimiento(nivel == 2
+                    ? Enemigo.ZIGZAG
+                    : Enemigo.persecucion(partida.getJugador()));
+            return k;
+        };
         
         return switch(nivel){
             case 1 -> List.of(
@@ -186,19 +193,31 @@ public class GestorNiveles {
                 }
                 
                 @Override
-                public void dibujar(Graphics2D g){
+                public void dibujar(Graphics2D g) {
                     int x = (int) getX();
                     int y = (int) getY();
-                    
-                    g.setColor(new Color(200, 40, 60));
-                    g.fillRoundRect(x, y, getAncho(), getAlto(), 20, 20);
-                    g.setColor(Color.WHITE);
-                    g.fillOval(x + 25, y + 18, 16, 16);
-                    g.fillOval(x + getAncho() - 41, y + 18, 16, 16);
-                    
+
+                    String[] jefe = {
+                        "        ####        ",
+                        "      ########      ",
+                        "    ############    ",
+                        "  ################  ",
+                        "####################",
+                        "####  ########  ####",
+                        "###    ######    ###",
+                        "  ##  ########  ##  ",
+                        "    ##  ####  ##    ",
+                        "      ##    ##      "
+                    };
+
+                    dibujarSprite(g, jefe, x + 10, y + 5, 5, new Color(200, 40, 60));
+
+                    // Barra de vida
                     double vidaRestante = (double) getResistencia() / RESISTENCIA_JEFE;
+
                     g.setColor(Color.GRAY);
                     g.fillRect(x, y - 10, getAncho(), 5);
+
                     g.setColor(Color.GREEN);
                     g.fillRect(x, y - 10, (int) (getAncho() * vidaRestante), 5);
                 }
@@ -207,5 +226,7 @@ public class GestorNiveles {
             return jefe;
     }
 }
+
+
 
 
