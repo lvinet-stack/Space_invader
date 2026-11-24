@@ -21,6 +21,7 @@ public class PanelMenu extends JPanel {
     private final JLabel lblTitulo;
     private final JLabel lblControles;
     private final JLabel lblPuntajes;
+    private final JLabel lblPuntajeMaximo;
     private final JButton btnJugar;
     private final JButton btnSalir;
 
@@ -59,6 +60,10 @@ public class PanelMenu extends JPanel {
         lblControles.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         btnJugar = crearBoton("JUGAR");
+        lblPuntajeMaximo = new JLabel("PUNTAJE MÁXIMO: 0");
+        lblPuntajeMaximo.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
+        lblPuntajeMaximo.setForeground(Color.CYAN);
+        lblPuntajeMaximo.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnJugar.addActionListener(e -> this.ventana.iniciarPartida());
 
         btnSalir = crearBoton("SALIR");
@@ -70,7 +75,10 @@ public class PanelMenu extends JPanel {
         add(Box.createRigidArea(new Dimension(0, 25)));
 
         add(lblPuntajes);
-        add(Box.createRigidArea(new Dimension(0, 35)));
+        add(Box.createRigidArea(new Dimension(0, 20)));
+
+        add(lblPuntajeMaximo);
+        add(Box.createRigidArea(new Dimension(0, 30)));
 
         add(btnJugar);
         add(Box.createRigidArea(new Dimension(0, 20)));
@@ -78,6 +86,10 @@ public class PanelMenu extends JPanel {
         add(btnSalir);
     }
 
+    public void actualizarPuntajeMaximo(int puntaje) {
+        lblPuntajeMaximo.setText("PUNTAJE MÁXIMO: " + puntaje);
+    }
+    
     private JButton crearBoton(String texto) {
         JButton boton = new JButton(texto);
         boton.setFont(new Font(Font.MONOSPACED, Font.BOLD, 22));
