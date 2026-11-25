@@ -12,3 +12,13 @@ Descargar el archivo [DefensoresDeLaGalaxia.jar]
 - o también podemos ejecutar el archivo directamente desde la carpeta:
   - (donde este la carpeta del archivo)\Space_Invaders\target
 - y desde aquí buscamos el .jar
+
+# Controles
+  Mover la nave a la izquierda o derecha
+  <- / -> (o A / D) 
+  Disparar
+  Espacio
+  Pausar
+  P
+  Volver al menú
+  Esc
