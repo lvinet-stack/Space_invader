@@ -3,8 +3,8 @@ Este videojuego retro se desarrollo con el lenguaje de programación Java utiliz
 
 - Integrantes: Carlos Martínez, Luis Vinet, Javier Toledo, Alex Laura, Vicente Guzman.
 # Requisitos antes de jugar: 
-  - Tener el JDK 22
-  - Maven 3.8 o superior
+  - Tener el JDK 22.
+  - Maven 3.8 o superior.
 # ¿Cómo ejecutamos el codigo? 
 Descargar el archivo [DefensoresDeLaGalaxia.jar]
 - Luego desde la terminal de donde se ubica el .jar copiamos y pegamos el siguiente comando:
@@ -14,10 +14,25 @@ Descargar el archivo [DefensoresDeLaGalaxia.jar]
 - y desde aquí buscamos el .jar
 
 # Controles
-  - Mover la nave a la izquierda o derecha: <- / -> (o A / D) 
-  - Disparar: Espacio
-  Pausar: P
-  Volver al menú: Esc
+  - Mover la nave a la izquierda o derecha: <- / -> (o A / D).
+  - Disparar: Espacio.
+  Pausar: P.
+  Volver al menú: Esc.
 
 # Reglas del juego:
+- El jugador inicia con 3 vidas.
+- Existen 3 niveles por lo que pasar, uno mas difícil que el otro, luego de terminar el tercer nivel se pasa al jefe final.
+- Cuando se destruye un enemigo existe la probabilidad del 20% de que caiga un PoweUp.
+- Después de cada disparo el escudo desaparece.
+- El puntaje máximo se muestra en el menu.
+- El jugador pierde cuando se queda sin vidas.
+- Las barreras que protegen al jugador se desgastan por cada disparo.
+- Los PowerUp disponibles son: escudo temporal, disparo doble y vida extra.
 
+# Estructura del proyecto
+- Contratos: Colisionable, Disparador, EfectoPowerUp, EstrategiaMovimiento, Puntuable.
+- Logica: GestorNiveles, Partida.
+- Modelo.Enemigo: Enemigos y el jefe final (clase anonima).
+- Modelo: PowerUp y EfectosPowerUp, Jugador, ProyectilEnemigo y ProyectilJugador, EntidadJuego y Barrera.
+- UI: PanelGameOver, PanelJuego, PanelMenu, VentanaPrincipal
+- Main: Donde se ejecuta el codigo
