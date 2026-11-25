@@ -7,3 +7,8 @@ Este videojuego retro se desarrollo con el lenguaje de programación Java utiliz
   - Maven 3.8 o superior
 # ¿Cómo ejecutamos el codigo? 
 Descargar el archivo [DefensoresDeLaGalaxia.jar]
+Luego desde la terminal de donde se ubica el .jar copiamos y pegamos el siguiente comando:
+    java -jar DefensoresDeLaGalaxia.jar
+o también podemos ejecutar el archivo directamente desde la carpeta:
+  (donde este la carpeta del archivo)\Space_Invaders\target
+y desde aquí buscamos el .jar
