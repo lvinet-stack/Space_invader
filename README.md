@@ -14,11 +14,10 @@ Descargar el archivo [DefensoresDeLaGalaxia.jar]
 - y desde aquí buscamos el .jar
 
 # Controles
-  Mover la nave a la izquierda o derecha
-  <- / -> (o A / D) 
-  Disparar
-  Espacio
-  Pausar
-  P
-  Volver al menú
-  Esc
+  - Mover la nave a la izquierda o derecha: <- / -> (o A / D) 
+  - Disparar: Espacio
+  Pausar: P
+  Volver al menú: Esc
+
+# Reglas del juego:
+
